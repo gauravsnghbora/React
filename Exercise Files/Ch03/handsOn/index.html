@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <script
+      src="https://unpkg.com/react@17/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <title>React ⚛️</title>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      function Header(props) {
+        return (
+          <header>
+            <h1>{props.name}'s Gym</h1>
+          </header>
+        );
+      }
+      function Main(props) {
+        return (
+          <section>
+            <img
+              height={400}
+              src="https://images.pexels.com/photos/841130/pexels-photo-841130.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+              alt="gym pic"
+            />
+            <img
+              height={400}
+              src="./pexels-leonardho-1552252.jpg"
+              alt="Gym pic"
+            />
+            <p>We believe in making people {props.adjective}.</p>
+            <ul>
+              {props.facilities.map((facility) => (
+                <li key={facility.id}>{facility.title}</li>
+              ))}
+            </ul>
+          </section>
+        );
+      }
+      function Footer(props) {
+        return (
+          <footer>
+            <p>Copyright {props.year} </p>
+          </footer>
+        );
+      }
+      const facilities = [
+        "MMA",
+        "Zumba",
+        "Yoga",
+        "Weight training",
+        "Mobility",
+        "HIIT",
+        "CrossFit",
+      ];
+
+      const facilitiesObj = facilities.map((facility, i) => ({
+        id: i,
+        title: facility,
+      }));
+      function App() {
+        return (
+          <React.Fragment>
+            <Header name="Negi" />
+            <Main facilities={facilitiesObj} adjective="amazing" />
+            <Footer year={new Date().getFullYear()} />
+          </React.Fragment>
+        );
+      }
+      ReactDOM.render(<App />, document.getElementById("root"));
+    </script>
+  </body>
+</html>
